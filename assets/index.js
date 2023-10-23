@@ -3,6 +3,9 @@ const input = document.getElementById("input");
 const button = document.getElementById("button");
 const add = document.querySelector(".add");
 
+
+let todo_list = []
+
 function renderItem(val) {
     const div = document.createElement("div")
 
@@ -18,46 +21,58 @@ function renderItem(val) {
    add.appendChild(div)
    
 }
+
+
+let clearInput = () => {
+    input.value = ""
+}
+function looping() {
+    for(let i; i<todo_list.length; i++) {
+        let item = todo_list[i]
+        renderItem(item)
+    }
+}
+function setItemToStorage(value) {
+      todo_list.push(value);
+       let obj =  JSON.stringify(todo_list)
+       console.log(obj)
+       localStorage.setItem("f" , todo_list)
+}
+function getItemFromStorage() {
+    let a = localStorage.getItem("f");
+   let b =  JSON.parse(a) || [];
+    
+    todo_list = b
+}
+
+
+
 function event() {
     
     enterAction.addEventListener("submit" , (e) => {
         let value = input.value
         e.preventDefault()
-        
-        
-        // function error() {
-        //     input.addEventListener("keydown" , () => {
-        //         if(input.value =="") {
-        //             alert("your input is empty")
-        //             button.classList.add("error")
-        //         }else {
-        //             button.classList.remove("error")
-        //             event()
-        //         }
-        //     })
-        // }
-        
         if(input.value==""){
-
                     button.classList.add("error")
                 alert("your input is empty")
-            }else if(input.value !=="") {
+            }else {
                 input.addEventListener("keydown" , () => {
                     button.classList.remove("error")
-
                 })
+                    setItemToStorage(value)
                     renderItem(value)
                     clearInput()
+                    
             }
         })
-            
-        
-}
-let clearInput = () => {
-    input.value = ""
 }
 
 
+function init () {
+    getItemFromStorage()
+    looping()
+    event()
+}
+init()
 
-event()
 
