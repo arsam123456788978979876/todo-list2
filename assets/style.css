@@ -1,0 +1,25 @@
+.todo-lists {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 200px auto;
+}
+.add div {
+    display: flex;
+
+}
+#button {
+    transition: all 1s;
+    
+    visibility: visible;
+    overflow: hidden;
+    scale: 1;
+}
+#button.error {
+    visibility: hidden;
+    
+   scale: 0;
+   
+   
+}
