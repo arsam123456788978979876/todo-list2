@@ -1,5 +1,5 @@
 body  {
-    overflow: hidden;
+    overflow-x: hidden;
 }
 .header {
     max-width: 400px;
@@ -22,9 +22,12 @@ body  {
 }
 #button {
     transition: all 1s;
-    overflow: hidden;
+    visibility: visible;
+    opacity: 1;
 }
 #button.error {
     background-color: red;
-   transform: translateX(700px);
+    opacity: 0;
+    visibility: hidden;
+   transform: translateX(300px);
 }
